@@ -1,3 +1,4 @@
+***
 
 ## 01. HTTP Method(GET, POST) & RESTful API
 API: API 서버와 클라이언트를 연결해서, 특정 기능을 수행해주는 녀석
@@ -77,6 +78,51 @@ JSON: JavaScript Object Notation
 data는 dict 형태이기 때문에 json 형태의 데이터(str)으로 만들어 주기 위해서		
 - json.loads(): str => dict
 - json.dumps(): dict => str
+
+
+---
+
+## 04. Slack + Github		
+
+github를 폴더와 연동시켜 커밋하는 방법과, 커밋시 슬랙에 자동으로 메세지를 보내는 API를 활용해보았다.		
+
+*git 사용하기*		
+- blog 폴더 만들기: github과 연동할 폴더		
+- git init
+	```
+	git init # git 초기화하기: ls -al로 .git 폴더가 생긴 것을 알 수 있다.		
+	vim README.md # README markdown 문서 생성	
+	git status # 깃 상태 확인해보기
+	```
+
+Git 사용은 크게 세단계로 나눌 수 있다.
+1. add (upstage)
+2. commit (stage)
+3. push (push): 기록되는 상태		
+
+다음은 실제로 README.md 파일을 수정하여 깃에 등록하는 순서를 보겠다		
+
+	```
+	git add README.md # README.md 파일을 커밋할 사항에 포함
+	git commit -v # commit 실행, 후에 뜬 nano 파일에 커밋할 내용적기
+				  # 본인에게 맞게 적으면 됨. 나는 init, add 등의 명령어를 사용하여 적음
+	git push -u origin master # 깃에 올리는 과정
+	```
+
+
+*github 변동 시 slack 메세지 받기*		
+
+github에서 제공하는 hooks를 활용하여 만들 수 있다.		
+> hook: 특정 이벤트가 발생하는 시점에 발생되는 기능, 이벤트 		
+
+slack app에서 GitHub를 검색한 후 추가하고 원하는 채널을 설정해 놓으면 된다.		
+
+[slack github 페이지](https://suwonseul.slack.com/apps/A0F7YS2SX-github)		
+
+
+
+
+
 
 
 
