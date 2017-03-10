@@ -18,8 +18,12 @@ book-ing, seulbook
 ```
 $ pip install django=1.10.6
 ```
-패키지 적을 때마다 적으면 불편하기 때문에, 새로운 방법으로
+- python_packages.sh: 패키지 적을 때마다 적으면 불편하기 때문에, 새로운 방법으로
 
 ```
 $./python_packages.sh
-``` 
+```			
+- 더 완벽한 형태의 패키지 관리: requirements.txt	
+```
+$pip install -r requirments.txt
+```
