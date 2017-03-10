@@ -115,4 +115,5 @@ MVC 중 Controller:
 
 > 지금까지 hello world를 출력하는 조그만 기능 만듬. 바로바로 commit 해주기
 
+> commit시 push 할 때 마다 로그인 안되게 하는 법: 
 
