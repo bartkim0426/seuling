@@ -2,12 +2,13 @@
 ## 01. Django 개발 환경 설정하기- pyenv, vertualenv, autoenv, gitignore
 
 *blog 폴더에 가상환경 설치*		
-	```
+	
+	
+	
 	$pyenv virtualenv 3.6.0b1 blog # 가상환경 생성하기, 파이썬 버전은 맘대로		
 								   # pyenv versions로 파이썬 버전 확인 후 설치		
-	$pyenv activate blog #blog 가상환경 활성화하기		
+	$pyenv activate blog #blog 가상환경 활성화하기				
 	$pip freeze # 가상환경을 초기화했기 때문에 패키지가 없어야한다.	
-	``` 
 
 
 > 파이썬의 모든 패키지는 pypi에 있는 걸 쓴다.		
@@ -61,5 +62,57 @@ remote는 가장 완벽한 상태에서 올려야한다
 	`<module 'django' from '/home/seul/.pyenv/versions/blog/lib/python3.6/site-packages/django/__init__.py'>` # .pyenv 안에 장고가 설치된 것!
 
 - 팀원은 어떤 패키지를 설치한지 모름... 이를 해결하는 법? 다음에서!
+
+---
+
+## 03. Django 프로젝트 초기화하기 - 간단한 뷰		
+
+* Project => 우리가 개발하고 있는 최종 큰 프로젝트
+* Application => 프로젝트에 포함된 작은 소스 (MVC Framework ...)		
+
+ex) project 'Facebook'
+- application 'users'
+- applicateion 'posts' => users에 대한 의존성
+- application 'messages' => users 의존성 
+- application 'page' ... # 다양한 어플리케이션으로 프로젝트 구성		
+>  각각의 applicataion들이 의존성을 가짐  	
+
+	$django-admin startproject wpsblog # wpsblog 프로젝트 생성			
+	
+이후 db.sqlite3 파일은 .gitignore에 등록,
+
+urls.py, settings.py, manage.py 등이 처음에 생김		
+
+> MCV
+> M: Model(DB): Data & Business Logic
+> V: View: Template/Client
+> C: Controller: View, Model... 
+> Model => 더 무겁게
+> Controller => 더 가볍게 (즉, 기능이 Controller => Model ...)		
+
+MVC 외에도		
+MVVM => Model View View Model		
+MVW => Model View Whatever ... 와 같은 다양한 방법론이 있음			
+
+*Hello World* 출력하기		
+MVC 중 Controller: 		
+
+	from django.http.response import HttpResponse 	
+	def home(request):		
+		return("Hello world")	
+
+\# 장고에 이미 만들어져 있음 (response) 		
+[django github](https://github.com/django/django)		
+
+### *urls.py* 안에 컨트롤러를 넣어도 됨.
+- 정규표현식을 사용해야함: 		
+	`url(r'$', home),`		
+	
+- runserver 끄기		
+	ps aux | grep runserver		
+	kill -9 id_value		
+(-9는 강제 종료, man kill 하면 명령어 확인 가능)		
+
+> 지금까지 hello world를 출력하는 조그만 기능 만듬. 바로바로 commit 해주기
 
 
