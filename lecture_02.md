@@ -1,10 +1,6 @@
----
 ## 01. Django 개발 환경 설정하기- pyenv, vertualenv, autoenv, gitignore
 
 *blog 폴더에 가상환경 설치*		
-	
-	
-	
 	$pyenv virtualenv 3.6.0b1 blog # 가상환경 생성하기, 파이썬 버전은 맘대로		
 								   # pyenv versions로 파이썬 버전 확인 후 설치		
 	$pyenv activate blog #blog 가상환경 활성화하기				
@@ -115,5 +111,30 @@ MVC 중 Controller:
 
 > 지금까지 hello world를 출력하는 조그만 기능 만듬. 바로바로 commit 해주기
 
-> commit시 push 할 때 마다 로그인 안되게 하는 법: 
+> commit시 push 할 때 마다 로그인 안되게 하는 법:
+	```
+	# 메모리에 인증정보를 캐싱 하도록 설정 (15분 기억)			
+	git config --global credential.helper cache			
+
+	# 캐시 타임아웃을 1시간으로 설정 (초단위 설정)		
+	git config --global credential.helper 'cache --timeout=3600' 		
+	```
+
+### *room/123* url 만들기		
+- localhost:8000/rooms/123 		
+- urls.py 파일에다			
+
+	def room(request, room_id): # room_id를 받기 때문에 받아줘야함
+		return HttpResponse("This is a room detail " + room_id)		
+
+- urlpatterns에다가			
+	url(r'^rooms/(?P<room_id>\d+)/$', room), # 추가하기		
+
+
+### wpsblog/controller의 역할을 하는 controller.py 만들고 기능 옮기기 	
+- wpsblog/ (main dir) 안에서 controller.py 만들기
+- home, room 함수 추가하기
+- urls.py 폴더에 controller의 함수 불러오기
+	`from wpsblog.controller import home, room`		
+
 
