@@ -136,5 +136,28 @@ MVC 중 Controller:
 - home, room 함수 추가하기
 - urls.py 폴더에 controller의 함수 불러오기
 	`from wpsblog.controller import home, room`		
+- controller.py => views.py: Django에서는 MVT 모델이기 때문에
 
 
+### 직방 api를 활용해서 room id를 가져오는 페이지 만들기		
+- requests 추가하기		
+	`pip install requests`
+- 함수 만들기: 직방 api를 받아오기			
+	```
+	def room(requesst, room_id):
+		url = "https://api.zigbang.com/v1/items?detail=true&item_ids=" + room_id
+		response = requests.get(url)
+		return HttpResponse(response.content)
+	```
+- json 코드가 아니라 예쁘게 안나옴 => 우리가 json이라고 명시해줘야함	
+	`content_type="application/json",`		
+이렇게 추가해주면 바꿔줌		
+>	`curl localhost:8000/rooms/123 -I # 정보를 확인할 수 있음
+> curl이 아닌 웹 브라우져 => Network 항목에서 Response Header에 Content_Type을 확인할 수 있음.
+> 현재 장고 1.10 버전에서 적용이 되지 않아 문제 해결중 => migrations, migrate 하자 브라우저 상에서는 바뀌는데 curl 상에서는 바뀌지 않음		
+
+
+\# 숙제: PEP0008 문서		
+- [PEP 8]()을 읽고 settings.py 등을 수정하기
+- watcha api: news.json (network 항목에서 찾기) => 50개의 뉴스정보, 이미지들이 나옴. => 장고에서 하나의 페이지로 어떻게 띄울 수 있을지 고민. 
+- 힌트: hello world에 <h1>'hello world'/</h1> 이면 html처럼 뜬다. 어떻게 하면 movies라는 url에서 어떤 view를 작동시켜서 html을 만들 수 있을지?
