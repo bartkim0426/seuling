@@ -60,6 +60,43 @@ remote는 가장 완벽한 상태에서 올려야한다
 - 팀원은 어떤 패키지를 설치한지 모름... 이를 해결하는 법? 다음에서!
 
 ---
+## 02. 파이썬 패키지 의존성 관리: requirements.txt		
+- 설치할 패키지를 README.md 에 적는 방법 => 패키지가 많아지면 비효율적		
+- `python_package.sh` 파일을 만들어서 `$source python_package.sh`
+> 위 파일을 chmod를 활용해서 실행할 수 있게
+> `$ls -la python_packages.sh`를 통해 r, w 권한을 확인하기		
+> `chmod` 명령어(change mod)를 활용해서 바꾸기		
+```
+$chmod 744 python_packages.sh # 744 권한으로 변경
+$chmod +w python_packages.sh # 쓰기 권한 추가, 보통 이렇게 사용함
+```
+
+*ipython 깔기*		
+`python_packages.sh`에 `pip install ipython` 추가 한 후 파일 실행 	
+
+> `sh` 명령어: shell script 명령어	
+> 실행할 때 `$./file_name.sh`로 실행시키기만 하면 됨		
+> 이를 바로 실행 가능 한 형태로 바꾸기 위해서 `chmod +w` 명령어 사용함  
+> source: 파일을 읽어서 한 줄로 실행시키는 명령어, 즉 'r' 권한  
+> ./filename.sh => 그 파일 자체를 실행하는 것, 즉 'w' 권한  
+> ./ (slash)는 현재 폴더를 명시함, 관례적으로 사용하는 것   	
+
+curl | source 뜻
+> `curl http://dobest.io/scr/python_packages.sh|source`		
+> 프로그램을 설치할 때 파일을 받아 소스를 실행하고 제거시키기 		
+> `curl`: 해당 페이지를 보여주고 바로 사라짐  
+		
+
+그럼 이것은 좋은 방법인가? 
+- 만약 패키지가 계속 늘어나면, 일일히 써야 하기 때문에 
+- pip 내장 기능을 제공해줌
+- requirements.txt: 파이썬 패키지를 pip 내장 기능으로 설치시켜주는 텍스트 파일을 관례적으로 이렇게 부름
+> `pip install -r requirments.txt`		
+
+이 requirements.txt는 완벽한 방법?
+- `pip freeze`의 결과와 동일하다 => 가장 완벽한 방법으로 바꾸자  
+- 
+
 
 ## 03. Django 프로젝트 초기화하기 - 간단한 뷰		
 
