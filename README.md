@@ -13,7 +13,7 @@ book-ing, seulbook
 수찬님 강의 완강하기
 1일 1강 듣기
 
-### 3.10. 설치할 패키지
+### 설치할 패키지
 1. 일단 `Django`를 설치.
 ```
 $ pip install django=1.10.6
@@ -26,4 +26,13 @@ $./python_packages.sh
 - 더 완벽한 형태의 패키지 관리: requirements.txt	
 ```
 $pip install -r requirments.txt
+```		
+- 배포시의 메모리를 줄이기 위해 requirements/ 안에 배포용, 개발용 나누기  
+```
+$pip install -r requirements/development.txt # 개발시에
+```
+
+2. Django project scaffolding
+```
+$django-admin startproject wpsblog
 ```

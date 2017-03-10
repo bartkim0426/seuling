@@ -88,14 +88,36 @@ curl | source 뜻
 		
 
 그럼 이것은 좋은 방법인가? 
-- 만약 패키지가 계속 늘어나면, 일일히 써야 하기 때문에 
-- pip 내장 기능을 제공해줌
-- requirements.txt: 파이썬 패키지를 pip 내장 기능으로 설치시켜주는 텍스트 파일을 관례적으로 이렇게 부름
+> 만약 패키지가 계속 늘어나면, 일일히 써야 하기 때문에 
+> pip 내장 기능을 제공해줌
+> requirements.txt: 파이썬 패키지를 pip 내장 기능으로 설치시켜주는 텍스트 파일을 관례적으로 이렇게 부름
 > `pip install -r requirments.txt`		
 
 이 requirements.txt는 완벽한 방법?
-- `pip freeze`의 결과와 동일하다 => 가장 완벽한 방법으로 바꾸자  
-- 
+> `pip freeze`의 결과와 동일하다 => 가장 완벽한 방법으로 바꾸자   
+> 그래서 `pip freeze`의 결과를 => requirements.txt로 바꾸게		
+> `pip freeze > requirement.txt` => 좋은 방법? no, 쓰고 있는 패키지 말고 다른 패키지들도 포함, 순서도 섞여있음.    
+
+> 실제 배포할 때는 메모리를 줄여야 하기 때문에, 모두 다 설치하면 안 좋음		
+> 그래서 나누는 것: 개발버전,(development.txt) 배포버전(requirements.txt) => 관리하기가 까다로움... 		
+>> `pip install -r`을 활용하기:   
+- 배포버전(기능별로- crawling.txt, documentation.txt 등...)별로 나눠서 production.txt에 배포용 패키지를 넣고  
+- 개발버전(development.txt)에는 개발용을 넣어주면 됨
+- 처음부터 완벽하게 해 놓고 관리해야 나중에도 관리가 된다!!!		
+
+#### *package 의존성 관리 정리*
+- requirements/ dir 안에 `development.txt`, `production.txt`를 추가
+- `development.txt`는 개발용(모든 패키지) 패키지를 넣고, 		
+	-r production.txt	# production 패키지를 읽는다는...
+- `production.txt`는 배포용 패키지를 넣는다.그리고 추가적으로 상위 폴더에  `requirements.txt`를 만들고 `-r requirements/production.txt` 내용을 넣는다. (추후 자동화를 위해서)		
+
+
+*Django 시작*
+- Django => Full Stack Backend Framework: 각각에 맞춰서 초기 세팅을 모두 해 줘야함: "scaffolding"
+- Flask => Micro Framework
+
+
+
 
 
 ## 03. Django 프로젝트 초기화하기 - 간단한 뷰		
