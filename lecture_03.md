@@ -20,11 +20,39 @@
 /?search=sth 을 추가하여 search 기능 붙여보기(방법이 많음)
 1. if문 사용하기		
 		
+
+2. lambda를 통해 list 새로 만들기 
+
+    if search:
+        news_list = list(filter(
+            lambda news: search in news.get('content'), 
+            news_list,
+            ))
+
+
+*tip*
+> dictionry에서 key값으로 value 조회할 때 		
+> `student['name']` 보다 `student.get('address')`가 더 좋다.		
+> `student.get('adress', '주소 없음')` 이런 식으로 기본 값으로 설정해 줄 수도 있다. 		
+
+3. list comprehension으로 만들기
+
+	news_list = [
+			news for news in news_list.get('content')
+			if search in news
+	]
+
+
+*request.GET*
+
     search =  request.GET.get('search') 
     print(search)
 		
 
 => GET 방식으로 'search'라는 리퀘스트를 request 변수로 설정,		(만약 search가 있다면) search를 프린트		
-=> 즉, request.GET 방식으로 보내진 'search' 쿼리를 get 하라는 명령어이다		
+=> 즉, request.GET 방식으로 보내진 'search' 쿼리를 get 하라는 명령어이다	
+=> 장고 내부에서 쓰는 딕셔너리 형태. 		
+=> 만약 query에서 /?search=곡성&where=seoul&hello=world 라고 썼다면 주소창의 GET 파라미터를 `request.GET.get('')`으로 찾을 수 있음			
 
- 
+
+
