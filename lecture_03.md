@@ -56,3 +56,17 @@
 
 
 
+### *form으로 search box 만들기*		
+
+
+    form_html = """
+    <form method="GET", action="/news/">
+        <input type="text" name="search">
+        <input type="submit" value="검색">
+
+    </form>
+
+    """		
+input 박스에 검색어를 적으면 GET 방식으로 /news/ 뒤로 가게 된다  
+
+
