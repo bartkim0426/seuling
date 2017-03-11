@@ -27,7 +27,7 @@ autoenv => .env라는 파일을 만들어야한다.
 깃허브에서 특정 파일을 받고 싶을 때는 Raw를 누르면 나오는 주소 복사, 그리고 wget 명령어로 다운로드		
 
 
-	wget https://github.com/github/gitignore/blob/master/Python.gitignore
+	wget https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore
 	mv Python.gitignore .gitignore # gitignore 파일로 쓰기		
 
 

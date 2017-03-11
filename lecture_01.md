@@ -102,12 +102,13 @@ Git 사용은 크게 세단계로 나눌 수 있다.
 
 다음은 실제로 README.md 파일을 수정하여 깃에 등록하는 순서를 보겠다		
 
-	```
+	
 	git add README.md # README.md 파일을 커밋할 사항에 포함
 	git commit -v # commit 실행, 후에 뜬 nano 파일에 커밋할 내용적기
 				  # 본인에게 맞게 적으면 됨. 나는 init, add 등의 명령어를 사용하여 적음
+	git remote add origin https://github.com/bartkim0426/test_blog.git 
 	git push -u origin master # 깃에 올리는 과정
-	```
+	
 
 
 *github 변동 시 slack 메세지 받기*		
