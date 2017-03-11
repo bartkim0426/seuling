@@ -5,7 +5,11 @@ from django.http import HttpResponse
 from django.conf import settings
 
 def home(request):
-    return HttpResponse("hello world")
+    with open(settings.BASE_DIR + "/templates/home.html", "r") as template:
+        content = template.read()
+        site_name = "seulchan's blog"
+        content = content.replace("## site_name ##", site_name)
+    return HttpResponse(content)
 
 def room(request, room_id):
    # 방 번호 (room_id) 직방의 데이터를 그대로 보여주는 뷰 (컨트롤러)
@@ -35,9 +39,9 @@ def news(request):
     
     with open(settings.BASE_DIR+"/templates/news.html", "r") as template:
         content = template.read()
-#       content.replace("__news__", _____
-        content += "<p>{count}개의 영화 뉴스 정보가 있습니다.</p>".format(count=len(news_list)) +\
-                "".join([
+
+        count = len(news_list)
+        news_content = "".join([
                     "<p><h2>{title}</h2></p><img src={image} alt='movie_img'/> <p>{content}</p>".format(
                         title=news['title'], 
                         image=news['image'],
@@ -45,4 +49,6 @@ def news(request):
                     for news 
                     in news_list
                     ])
+        content = content.replace("## count ##", str(count))
+        content = content.replace("## news_content ##", news_content)
         return HttpResponse(content)
