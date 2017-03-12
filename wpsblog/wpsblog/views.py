@@ -39,21 +39,10 @@ def news(request):
             lambda news: search in news.get('content'), 
             news_list,
             ))
-    count = len(news_list)
-    news_content = "".join([
-        "<h2>{title}</h2><img src={img_src} alt='movie_image'/><p>{content}</p>".format(
-            title = news.get('title'),
-            img_src = news.get('image'),
-            content = news.get('content'),
-            )
-        for news
-        in news_list
-        ])
+    
     return HttpResponse(template.render(
            {
-               "page_name":"news page",
-               "news_content":news_content,
-               "count":str(count),
+               "news_list": news_list,
                },
            request,
            ))

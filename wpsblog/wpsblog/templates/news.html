@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+
+{% block title %} News {% endblock %}
+{% block content %} 
 <h1> News Page </h1>
 
 <p> {{ news_list|length }} 개의 영화 정보가 있습니다. </p>
@@ -9,3 +13,4 @@
 	<img src="{{ news.image }}"/>
 </li>
 {% endfor %}
+{% endblock %}
