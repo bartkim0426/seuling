@@ -104,7 +104,7 @@ HTMl에서 지정해 놓은 특정 변수 (##으로 임의로 하였다)에 coun
 - wpsblog/ 하위에 `renderer.py` 파일을 만들고
 - render 함수를 정의하여 중복을 최대한 줄였다.
 - header, footer도 html로 만들어서 링크를 걸었다.
-	```
+	
 	def render(template_name, context): # template_name에서는 사용하는 템플릿 명을, context에는 ##으로 받아줄 내용을 딕셔너리로 넣었다.
 		header_content = open(settings.BASE_DIR + "/templates/header.html", "r").read()
 		footer_content = open(settings.BASE_DIR + "/templates/footer.html", "r").read()
@@ -118,19 +118,13 @@ HTMl에서 지정해 놓은 특정 변수 (##으로 임의로 하였다)에 coun
 					   "## " + key + " ##", value 
 						)
 		return HttpResponse(content)
-	```
 
 - 이렇게 하고 실제 views에서는 코드를 간략하게 바꾸었다.
 
-	```	 
+		 
 	def home(request):
 		return render("home", {"site_name":"seul's blog"}) # 템플릿 명으로 home을, home.html의 site_name에 맞는 내용을 딕셔너리로 넣어주었다.
-	```
-**tip? how to write comment inside markdown code**
-> just write 3 \`\`\` (beside num 1)
-> if not, you can't see #(comment in python) comment 
 
-<<<<<<< HEAD
 ---
 
 ## 03. Django에서의 HTML 템플릿 렌더링 (3) - 장고 내장 함수로 구현하기		
@@ -209,7 +203,38 @@ HTMl에서 지정해 놓은 특정 변수 (##으로 임의로 하였다)에 coun
 > 그래서 상속의 형태로 사용 가능하게 함.
 - `{% block name %}` 형태로 만들어서 상속
 - `{% extends "base.html" %}` 으로 확장 후, {% block content %}에 내용을 넣어 주면 됨.
+- 나중에 장고 템플릿이 어떤 식으로 작동하는지 render 함수 처럼 뜯어 보는게 좋다!
+> 어떤 프레임워크, 어떤 언어던지 직접 구현할 수 있는게 기반이 되어야 한다! 
 
+*또 빼줄수 있는것: 중복*
+
+	
+	def home(request): 
+		template = loader.get_template("home.html")
+		return HttpResponse(
+				template.render(
+					{"site_name":"seul's blog"},
+					request,
+					)
+				)
+ 
+- 이런 중복된 템플릿 함수를
+
+	def render(reqeust, template_name, context):
+
+이렇게 받는 함수를 만들어 주면 되는데, 장고에서는 이런 기능도 제공해줌.		
+
+장고 코드에 [shortcut.py](ttps://github.com/django/django/blob/master/django/shortcuts.py)에 보면 render(request, tempate_name, context를 받아주는) 함수가 있다.		
+- 그럼 shortcuts에서 render 함수를 불러 주고
+- 3가지를 넣으면 된다: request, template_name, key:vlaue 값을 넣으면 동작, 
+
+    return render(
+            request, 
+            "news.html",
+            {"news_list": news_list,}
+            )
+
+- 그러나 사용법보다 원리가 훨씬  중요하다:  이 전에 만들었던 것들을 기억해야함!!
 
  
 
@@ -217,5 +242,3 @@ HTMl에서 지정해 놓은 특정 변수 (##으로 임의로 하였다)에 coun
 
 
   
-=======
->>>>>>> 9a69d5aa52d8db5ca1d6b20599c4975925bc8b54
