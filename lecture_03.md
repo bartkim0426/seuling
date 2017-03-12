@@ -49,7 +49,9 @@
     print(search)
 		
 
-=> GET 방식으로 'search'라는 리퀘스트를 request 변수로 설정,		(만약 search가 있다면) search를 프린트		
+=> GET 방식으로 'search'라는 리퀘스트를 request 변수로 설정,		(만약 search가 있다면) search를 프린트
+=> request.GET: get `<QueryDict: {'search':['현지'], 'name':['슬찬,수원']}>`		
+=> can get by `request.GET.get('search')`: not list, just str() type
 => 즉, request.GET 방식으로 보내진 'search' 쿼리를 get 하라는 명령어이다	
 => 장고 내부에서 쓰는 딕셔너리 형태. 		
 => 만약 query에서 /?search=곡성&where=seoul&hello=world 라고 썼다면 주소창의 GET 파라미터를 `request.GET.get('')`으로 찾을 수 있음			
