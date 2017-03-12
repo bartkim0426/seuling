@@ -104,7 +104,7 @@ HTMl에서 지정해 놓은 특정 변수 (##으로 임의로 하였다)에 coun
 - wpsblog/ 하위에 `renderer.py` 파일을 만들고
 - render 함수를 정의하여 중복을 최대한 줄였다.
 - header, footer도 html로 만들어서 링크를 걸었다.
-	
+	```
 	def render(template_name, context): # template_name에서는 사용하는 템플릿 명을, context에는 ##으로 받아줄 내용을 딕셔너리로 넣었다.
 		header_content = open(settings.BASE_DIR + "/templates/header.html", "r").read()
 		footer_content = open(settings.BASE_DIR + "/templates/footer.html", "r").read()
@@ -118,13 +118,19 @@ HTMl에서 지정해 놓은 특정 변수 (##으로 임의로 하였다)에 coun
 					   "## " + key + " ##", value 
 						)
 		return HttpResponse(content)
+	```
 
 - 이렇게 하고 실제 views에서는 코드를 간략하게 바꾸었다.
 
-		 
+	```	 
 	def home(request):
 		return render("home", {"site_name":"seul's blog"}) # 템플릿 명으로 home을, home.html의 site_name에 맞는 내용을 딕셔너리로 넣어주었다.
+	```
+**tip? how to write comment inside markdown code**
+> just write 3 \`\`\` (beside num 1)
+> if not, you can't see #(comment in python) comment 
 
+<<<<<<< HEAD
 ---
 
 ## 03. Django에서의 HTML 템플릿 렌더링 (3) - 장고 내장 함수로 구현하기		
@@ -211,3 +217,5 @@ HTMl에서 지정해 놓은 특정 변수 (##으로 임의로 하였다)에 coun
 
 
   
+=======
+>>>>>>> 9a69d5aa52d8db5ca1d6b20599c4975925bc8b54
