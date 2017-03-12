@@ -2,10 +2,16 @@ import requests
 import json
 
 from django.http import HttpResponse  
-from wpsblog.renderer import render
+from django.template import loader
 
 def home(request):
-    return render("home", {"site_name":"seul's blog"})
+    template = loader.get_template("home.html")
+    return HttpResponse(
+            template.render(
+                {"site_name":"seul's blog"},
+                request,
+                )
+            )
 
 def room(request, room_id):
    # 방 번호 (room_id) 직방의 데이터를 그대로 보여주는 뷰 (컨트롤러)
@@ -27,6 +33,7 @@ def news(request):
     news_dict = json.loads(response.content)
     news_list =  news_dict.get('news')
 
+    template = loader.get_template("news.html")
     if search:
         news_list = list(filter(
             lambda news: search in news.get('content'), 
@@ -42,7 +49,11 @@ def news(request):
         for news
         in news_list
         ])
-    return render("news", {
-        "count": str(count),
-        "news_content": news_content
-        }) 
+    return HttpResponse(template.render(
+           {
+               "page_name":"news page",
+               "news_content":news_content,
+               "count":str(count),
+               },
+           request,
+           ))
