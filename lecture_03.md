@@ -125,6 +125,87 @@ HTMl에서 지정해 놓은 특정 변수 (##으로 임의로 하였다)에 coun
 	def home(request):
 		return render("home", {"site_name":"seul's blog"}) # 템플릿 명으로 home을, home.html의 site_name에 맞는 내용을 딕셔너리로 넣어주었다.
 
+---
+
+## 03. Django에서의 HTML 템플릿 렌더링 (3) - 장고 내장 함수로 구현하기		
+
+이런 걸 하는 이유: 장고에서 기본적으로 템플릿 렌더링을 해줌. 그냥 쓰면 의미가 없고 그 원리를 알아야함!		
+
+- renderer.py를 지우는 것부터 시작.
+- templates/ dir 지움. (마지막에 다시 구현 해볼것!)
+- INSTALLED_APPS에 app_name 추가해줌: 장고 템플릿 사용 뿐 아니라 다양한 이유가 있음, -> 장고 템플릿 사용할 준비 완료		
+- 장고에서 직접 템플릿 로더를 불러서 사용 가능
+
+
+  	from django.template import loader
+			 
+	def home(request):
+		template = loader.get_template("home.html")
+		return HttpResponse(
+				template.render(
+					{"site_name":"seul's blog"},
+					request,
+					)
+				)
+
+- 장고 안에서 이미 구현되어 있는 render 함수를 써서 표현 가능하다. (html 파일에서는 {{ }} 장고 템플릿을 쓰면 된다.)
+
+- 장고 템플릿의 많은 기능; `count`와 같은 애들을 쉽게 쓸 수 있다.		
+> [built-in django templatetag]() 참고
+
+- 이제 news_list의 기능들을 장고 템플릿으로 만들어주기
+검색에 대한 부분을 빼고 HTML 기능들을 넘기기
+=> news_list를 넘겨주고 장고 템플릿에서 {% %}와 같은 장고 템플릿 엔진을 사용		
+
+	<p> {{ news_list|length }} 개의 영화 정보가 있습니다. </p>
+
+	{% for news in news_list %}
+	<li>
+		<h2> {{ news.title }} </h2>
+		<p> {{ news.content }} </p>
+		<img src="{{ news.image }}"/>
+	</li>
+	{% endfor %}
+
+
+	def news(request):
+
+		search =  request.GET.get('search') 
+
+		url = "https://watcha.net/home/news.json?page=1&per=50"
+		response = requests.get(url)
+		
+		news_dict = json.loads(response.content)
+		news_list =  news_dict.get('news')
+
+		template = loader.get_template("news.html")
+		if search:
+			news_list = list(filter(
+				lambda news: search in news.get('content'), 
+				news_list,
+				))
+		
+		return HttpResponse(template.render(
+			   {
+				   "news_list": news_list,
+				   },
+			   request,
+			   ))
+
+> 그 외에 mustache, jinja2(python에서 많이 쓰임), JADE(태그 이름을 적으면 바뀜, javascript 계열에서 많이 쓰임) 등의 템플릿 엔진이 있음
+> 위에서 쓴건 장고 템플릿 엔진
+
+
+**header, footer 추가하기**
+- 기존에 장고 템플릿에서 지원하는 {% include %} 형식을 사용해서 해주면 됨
+- 더 나은 방법은? 
+> 거의 모든 홈페이지에서 header, footer는 사용함		
+> 그래서 상속의 형태로 사용 가능하게 함.
+- `{% block name %}` 형태로 만들어서 상속
+- `{% extends "base.html" %}` 으로 확장 후, {% block content %}에 내용을 넣어 주면 됨.
+
+
+ 
 
 
 
