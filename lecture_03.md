@@ -2,8 +2,8 @@
 
 ### 01. Django에서의 HTML 템플릿 렌더링(1): 직접 코드에서 HTML 파일 만들기
 
-*왓차 정보 가져오기*
-
+*왓차 정보 가져오기*		
+[watch news api](https://watcha.net/home/news.json?page=1&per50)
 	news_dict = json.loads(response.content) #json 형태에서 dict 형태로 가져오기
 	# news_dict = response.json() 도 똑같은 형태이다.		
 
@@ -49,7 +49,9 @@
     print(search)
 		
 
-=> GET 방식으로 'search'라는 리퀘스트를 request 변수로 설정,		(만약 search가 있다면) search를 프린트		
+=> GET 방식으로 'search'라는 리퀘스트를 request 변수로 설정,		(만약 search가 있다면) search를 프린트
+=> request.GET: get `<QueryDict: {'search':['현지'], 'name':['슬찬,수원']}>`		
+=> can get by `request.GET.get('search')`: not list, just str() type
 => 즉, request.GET 방식으로 보내진 'search' 쿼리를 get 하라는 명령어이다	
 => 장고 내부에서 쓰는 딕셔너리 형태. 		
 => 만약 query에서 /?search=곡성&where=seoul&hello=world 라고 썼다면 주소창의 GET 파라미터를 `request.GET.get('')`으로 찾을 수 있음			
@@ -134,9 +136,10 @@ HTMl에서 지정해 놓은 특정 변수 (##으로 임의로 하였다)에 coun
 - renderer.py를 지우는 것부터 시작.
 - templates/ dir 지움. (마지막에 다시 구현 해볼것!)
 - INSTALLED_APPS에 app_name 추가해줌: 장고 템플릿 사용 뿐 아니라 다양한 이유가 있음, -> 장고 템플릿 사용할 준비 완료		
-- 장고에서 직접 템플릿 로더를 불러서 사용 가능
+- 장고에서 직접 템플릿 로더를 불러서 사용 가능		
 
 
+	```
   	from django.template import loader
 			 
 	def home(request):
@@ -147,7 +150,8 @@ HTMl에서 지정해 놓은 특정 변수 (##으로 임의로 하였다)에 coun
 					request,
 					)
 				)
-
+	```
+	
 - 장고 안에서 이미 구현되어 있는 render 함수를 써서 표현 가능하다. (html 파일에서는 {{ }} 장고 템플릿을 쓰면 된다.)
 
 - 장고 템플릿의 많은 기능; `count`와 같은 애들을 쉽게 쓸 수 있다.		
@@ -155,8 +159,10 @@ HTMl에서 지정해 놓은 특정 변수 (##으로 임의로 하였다)에 coun
 
 - 이제 news_list의 기능들을 장고 템플릿으로 만들어주기
 검색에 대한 부분을 빼고 HTML 기능들을 넘기기
-=> news_list를 넘겨주고 장고 템플릿에서 {% %}와 같은 장고 템플릿 엔진을 사용		
-
+=> news_list를 넘겨주고 장고 템플릿에서 {% %}와 같은 장고 템플릿 엔진을 사용	  
+	
+	
+	```
 	<p> {{ news_list|length }} 개의 영화 정보가 있습니다. </p>
 
 	{% for news in news_list %}
@@ -166,10 +172,10 @@ HTMl에서 지정해 놓은 특정 변수 (##으로 임의로 하였다)에 coun
 		<img src="{{ news.image }}"/>
 	</li>
 	{% endfor %}
+	
 
-
+	
 	def news(request):
-
 		search =  request.GET.get('search') 
 
 		url = "https://watcha.net/home/news.json?page=1&per=50"
@@ -191,7 +197,7 @@ HTMl에서 지정해 놓은 특정 변수 (##으로 임의로 하였다)에 coun
 				   },
 			   request,
 			   ))
-
+	```
 > 그 외에 mustache, jinja2(python에서 많이 쓰임), JADE(태그 이름을 적으면 바뀜, javascript 계열에서 많이 쓰임) 등의 템플릿 엔진이 있음
 > 위에서 쓴건 장고 템플릿 엔진
 
@@ -226,14 +232,15 @@ HTMl에서 지정해 놓은 특정 변수 (##으로 임의로 하였다)에 coun
 
 장고 코드에 [shortcut.py](ttps://github.com/django/django/blob/master/django/shortcuts.py)에 보면 render(request, tempate_name, context를 받아주는) 함수가 있다.		
 - 그럼 shortcuts에서 render 함수를 불러 주고
-- 3가지를 넣으면 된다: request, template_name, key:vlaue 값을 넣으면 동작, 
-
-    return render(
+- 3가지를 넣으면 된다: request, template_name, key:vlaue 값을 넣으면 동작, 			
+	```
+	return render(
             request, 
             "news.html",
             {"news_list": news_list,}
             )
 
+	```
 - 그러나 사용법보다 원리가 훨씬  중요하다:  이 전에 만들었던 것들을 기억해야함!!
 
  
