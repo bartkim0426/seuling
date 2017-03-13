@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %} Policy {% endblock %} 
+
+{% block content %}
+<h2>Policy </h2>
+<p> 저희의 정책 페이지 입니다. </p>
+	<li><a href="{% url "terms"  %}"> 이용 약관 </a></li>
+	<li><a href="{% url "privacy"  %}"> 개인정보취급 방침</a></li>
+	<li><a href="{% url "disclaimer"  %}"> 법적 고지와 책임의 한계</a></li>
+{% block policy_content %}{% endblock policy_content %}
+
+{% endblock content  %}
