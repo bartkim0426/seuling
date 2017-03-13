@@ -13,7 +13,6 @@ def news(request):
     news_dict = json.loads(response.content)
     news_list =  news_dict.get('news')
 
-    template = loader.get_template("news.html")
     if search:
         news_list = list(filter(
             lambda news: search in news.get('content'), 

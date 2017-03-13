@@ -8,4 +8,19 @@ urlpatterns = [
     url(r'^$', home, name="home"),
     url(r'^rooms/(?P<room_id>\d+)/$', room, name="room"),
     url(r'^news/$', news, name="news"),
+    url(r'^about/us/$', about, name="about"),
+    url(r'^terms/$', terms, name="terms"),
+    url(r'^privacy/$', privacy, name="privacy"),
+    url(r'^disclaimer/$', disclaimer, name='disclaimer'),
 ]
+
+
+# 1. about page (.../about , .../about/us , .../about-us/)
+
+# 2. 정책
+# 이용약관 page ( /terms/ )
+# 개인정보 취급방침 페이지 (... /privacy/)
+# 법적 고지와 책임의 한계 (... /disclaimer/)
+
+# 이것들을 header에 넣어서 동작하게
+
