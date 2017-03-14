@@ -165,12 +165,12 @@ url(r'^policy', include([
 - 이것보다 좀 더 낫게 수정하는 법: 어짜피 policy로 묶여 있기 때문에 이름도 공통적이면 어떨까? 		
 > include라는 함수가 제공하는 기능: namespace
 > url을 굉장히 구조화 시킬 수 있다
-```
-url(r'^policy', include([
-    url(r'terms/$', terms, name="terms"),
-    url(r'privacy/$', privacy, name="privacy"), url(r'disclaimer/$', disclaimer, name='disclaimer'),
-], namespace="policy")) #policy라는 namespace 추가
-```
+
+	url(r'^policy', include([
+		url(r'terms/$', terms, name="terms"),
+		url(r'privacy/$', privacy, name="privacy"), url(r'disclaimer/$', disclaimer, name='disclaimer'),
+	], namespace="policy")) #policy라는 namespace 추가
+
 그리고 추가적으로 html에서 url을 불러올 때 `{% url "policy:terms" %}`라는 방식으로 불러오면 된다. 즉, {% url "namespace:name" %}		
 
 **tips: django 코드 찾는법**	
@@ -180,30 +180,28 @@ url(r'^policy', include([
 > 이 안의 include 함수를 찾을 수 있다.		
 > 코드를 읽어보고 이해가 안되도 어떤 흐름으로 동작하는지 아는 것이 중요하다!!		
 
-###다시 구조화된 형태로 리펙토링 하기	
+###	다시 구조화된 형태로 리펙토링 하기	
 
 1. 변수로 빼기 		
 - urls.py에서 policy와 관련된 urlpatterns를 리스트로 빼주기(어짜피 include 함수는 리스트를 인자로 받기 때문이다.)		
-
-```
 	policy_urlpatterns = [
 		url(r'terms/$', terms, name="terms"),
 		url(r'privacy/$', privacy, name="privacy"), url(r'disclaimer/$', disclaimer, name='disclaimer'),
 	] 
 	urlpatterns = url(r'^policy', include(policy_urlpatterns, namespace="policy")) #policy라는 namespace 추가		
-```
+
 
 2. 파일로 뺀다. 		
 - 그렇다면 이것을 다른 파일로 빼줄 수 있다: `policy_urls` 파일을 만들어서
-```
-# url을 쓰니깐\		
-from django.conf.urls import url		
-from wpsblog.views import *		
-urlpatterns = [		
-	url(r'terms/$', terms, name="terms"),		
-	url(r'privacy/$', privacy, name="privacy"), url(r'disclaimer/$', disclaimer, name='disclaimer'),		
-] 		
-``` 
+
+# url을 쓰니깐		
+	from django.conf.urls import url		
+	from wpsblog.views import *		
+	urlpatterns = [		
+		url(r'terms/$', terms, name="terms"),		
+		url(r'privacy/$', privacy, name="privacy"), url(r'disclaimer/$', disclaimer, name='disclaimer'),		
+	] 		
+ 
 
 - 그리고 이것을 `urls.py`에서 그대로 받아서 쓰면 된다.		
 `from wpsblog.policy_urls import urlpatterns as policy_urlpatterns`	
@@ -212,9 +210,9 @@ urlpatterns = [
 - 얘를 또 줄여줄 수 있음: incude 내부 기능
 > `from wpsblog.policy_urls imprt urlpatterns` 대신 내부적으로 읽는 기능		
 > include()에다가 list가 아니라 str으로 		
-```
-include("wpsblog.policy_urls", namespace="policy")
-```
+
+`include("wpsblog.policy_urls", namespace="policy")`
+
 이렇게 스트링으로 뺴 줄 수 있따는 말!		
 
 4. ulrs/라는 모듈을 만들어서 전체를 리펙토링		
@@ -223,5 +221,22 @@ include("wpsblog.policy_urls", namespace="policy")
 - urls.py 파일 또한 views 폴더로 만든 것처럼 urls 디렉토리로 만들고 폴더 안에 `__init__.py`로 불러올 수 있다.		
 > 그렇게 되면 `policy_urls.py`도 urls 폴더 안에 policy.py로 빼서 불러올 수 이씀.
 
+
+
+## 03. settings.py 리펙토링-배포환경, 개발환경 구분하기
+
+* 비개발자가 수정/변경할 수 있는 컨텐츠를 운용하는 방법?
+django flatpages: 정적인 페이지를 쉽게 서버에서 불러올 수 있는 기능을 가진 앱, (https://docs.djangoproject.com/en/1.10/ref/contrib/flatpages/)		
+
+* 설치할 라이브러리
+1. django-debug-toolbar		
+현재 문제: installed app에 debug_toolbar를 추가시키면 
+`TypeError: '_TokenType' object is not callable`		
+이라고 에러가 뜬다.		
+
+2. settings.py 리펙토링
+- 리펙토링 하지 않으면 `debug_toolbar`도 모든 사람이 볼 수 있기 때문에... 
+
+-  
 
 
