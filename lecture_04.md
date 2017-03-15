@@ -237,6 +237,45 @@ django flatpages: 정적인 페이지를 쉽게 서버에서 불러올 수 있�
 2. settings.py 리펙토링
 - 리펙토링 하지 않으면 `debug_toolbar`도 모든 사람이 볼 수 있기 때문에... 
 
--  
+- settings dir를 만들고, 그 안에 partials 폴더를 만든 후 settings.py의 내용들을 base, auth, database, static, internationalization의 5가지 기능별로 나누어 넣는다. partials 폴더의 각각의 `.py`의 세팅을 불러올 수 있게 `__init__.py`를 만들어 `from .base import *`와 같은 명령어로 다 불러온다.
+
+- settings 폴더 안에 development, production을 만든다. production level에서 사용 할 것들을 불러준다. 
+
+	from .partials import *		
+	debug = False		
+
+- development 파일에서는 production을 불러준 뒤 dev level에서 사용할 세팅을 지정한다.
+
+	from .partials import *
+	INSTALLED_APPS += ['debug_toolbar',]
+
+- 마지막으로 settings 폴더를 `settings.py`처럼 기능할 수 있는 `__init__.py` 파일을 만들고, production level에서 작동할 수 있게 `from .production import *`를 적어준다. 그러면 기본적인 runserver에서는 이 세팅을 적용시킨다.
+
+- dev level에서 작동시키기 위해서는 다음 명령어로 runserver를 작동시키면 된다. 		
+
+	python manage.py runserver --settings=wpsblog.settings.development 		
+
+
+
+## 04. git pre-commit hook을 이용한 PEP8 자동 체크하기		
+[pep8](https://www.python.org/dev/peps/pep-0008/): 파이썬 스타일 가이드. 
+
+- development 에다가 pep8을 설치하고 
+> 설치하는 방법: development.txt에 pep8을 추가 하고 		
+> `pip install -r development.txt`로 설치: development.txt를 읽어서 설치해라라는 뜻		
+- pep8 . 으로 검사하면 된다. 
+- 고쳐주는 것: autopep8이지만 쓰지 말아라. 
+- 나는 거의 20~30개 나온다...
+- pep8을 수정할 수 있음: 현재는 거의 쓸모 없는 기능들도 있다. -> 예를들면 79자 (모니터가 작아서..ㅋㅋ) 그래서 관례적으로 119글자를 사용하다. (max-120으로) 	
+> 맨 상위 폴더에 `.pep8`이라는 파일을 만들어서 옵션을 줄 수 있다. 		
+
+	[pep8] 		
+	max-line-length = 119 		
+
+명령어를 똑같이 쳐보기		
+`cp ./.git/hooks/pre-commit.sample ./.git/hooks/pre-commit`		
+
+ 
+		
 
 

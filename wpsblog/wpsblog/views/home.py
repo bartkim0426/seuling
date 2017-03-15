@@ -1,8 +1,9 @@
 from django.shortcuts import render
 
-def home(request): 
+
+def home(request):
     return render(
-           request, 
+           request,
            "home.html",
-           {"site_name":"seul's blog"},
-            )
+           {"site_name": "seul's blog"},
+           )
