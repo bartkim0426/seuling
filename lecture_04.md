@@ -288,4 +288,6 @@ django flatpages: 정적인 페이지를 쉽게 서버에서 불러올 수 있�
 4. `django-extentions`라는 패키지를 설치, 어떤 기능이 있는지 살펴보기..
 
 [django-extensions github](https://github.com/django-extensions/django-extensions) 		
-[django-extensions documentation](https://django-extensions.readthedocs.io/en/latest/)		  
+[django-extensions documentation](https://django-extensions.readthedocs.io/en/latest/)	
+
+	  

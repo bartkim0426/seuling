@@ -1,5 +1,6 @@
 from django.conf.urls import url
-from wpsblog.views import *
+from wpsblog.views.policy import privacy, terms, disclaimer
+
 
 urlpatterns = [
         url(r'^terms/$', terms, name="terms"),

@@ -1,7 +1,7 @@
-from django.conf import settings
+# from django.conf import settings
 from django.conf.urls import url, include
 from django.contrib import admin
-from wpsblog.views import *
+from wpsblog.views import home, news, room, about, policy
 
 
 urlpatterns = [
@@ -16,5 +16,5 @@ urlpatterns = [
 # if settings.DEBUG:
 #     import debug_toolbar
 #     urlpatterns = [
-#         url(r'^__debug__/', include(debug_toolbar.urls)),
+#             url(r'^__debug__/', include(debug_toolbar.urls)),
 #             ] + urlpatterns
