@@ -2,4 +2,16 @@
 
 {% block content %}
 <h1> Naver Posts_with An </h1>
+<ul>
+{% for naver_post in naver_posts %}
+<p>
+	<li>
+		<img src="{{ naver_post.thumbnail_image_element }}" alt="{{ naver_post.title }}"/>
+		<h3>{{ naver_post.title }}</h3>
+		<p> {{ naver_post.content }} </p>
+		<a href="{{ naver_post.original_url }}"> 원문 바로가기 </a>
+	</li></br>
+{% endfor %} 
+</p>
+</ul>
 {% endblock content %}

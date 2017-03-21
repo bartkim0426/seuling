@@ -8,6 +8,6 @@ def naver_posts_list(request):
            request,
            "naver_posts/list.html",
            {
-               "naver_post": Crawlnaver.objects.all(),
+               "naver_posts": Crawlnaver.objects.all(),
             },
     )
