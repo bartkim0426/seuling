@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls import url, include
 from django.contrib import admin
-from wpsblog.views import home, news, room, about, policy
+from wpsblog.views import *
 
 
 urlpatterns = [
@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^about/us/$', about, name="about"),
     url(r'^policy/', include("wpsblog.urls.policy", namespace='policy')),
     url(r'^posts/', include("wpsblog.urls.posts", namespace='posts')),
+    url(r'^naver_posts_list/$', naver_posts_list, name='naver_posts_list')
 ]
 
 if settings.DEBUG:

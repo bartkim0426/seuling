@@ -41,11 +41,7 @@ class Crawlnaver(models.Model):
     )
     content = models.TextField()
     original_url = models.URLField()
-    thumbnail_image_element = models.URLField()
+    thumbnail_image_element= models.URLField()
 
     def __str__(self):
         return self.title
-
-
-    
-
