@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1> Naver Posts </h1>
+<ul>
+	<p><h2>
+		<a href="{{ post_url }}"> {{ post_title }} </a> 
+	</h2></p> 
+	
+	<img src="{{ post_image  }}" alt='naver_image' />
+	<p>
+		{{ post_content }}	
+	</p>
+</ul>
+{% endblock content %}
