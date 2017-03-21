@@ -1,6 +1,7 @@
 -r crawling.txt
 -r documentation.txt
 
-
 django==1.10.6
 requests
+requests
+beautifulsoup4
