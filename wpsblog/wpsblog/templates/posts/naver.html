@@ -3,13 +3,15 @@
 {% block content %}
 <h1> Naver Posts </h1>
 <ul>
+	{% for post in naverpost %} 
 	<p><h2>
-		<a href="{{ post_url }}"> {{ post_title }} </a> 
+		<a href="{{ post.urladdress }}"> {{ post.title }} </a> 
 	</h2></p> 
 	
-	<img src="{{ post_image  }}" alt='naver_image' />
+	<img src="{{ post.imageadress }}" alt='naver_image' />
 	<p>
-		{{ post_content }}	
+		{{ post.content }}	
 	</p>
+	{% endfor %}
 </ul>
 {% endblock content %}
