@@ -7,4 +7,9 @@
 	<h2> {{ posts.title }} </h2>
 	<p> {{ posts.content }} </p>
 <p>
+
+<ul>
+	<li><a href="/posts/{{ post.id }}/delete/"> 삭제하기 </a></li>
+	<li><a href="/posts/{{ post.id }}/edit/"> 수정하기 </a></li>
+</ul>
 {% endblock content %}

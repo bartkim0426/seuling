@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from wpsblog.views.posts import list, detail, naver, create, new, edit, update
+from wpsblog.views.posts import list, detail, naver, create, new, edit, update, delete
 
 
 urlpatterns = [
@@ -10,4 +10,5 @@ urlpatterns = [
         url(r'^new/$', new, name='post-new'),
         url(r'^(?P<post_id>\d+)/edit/$', edit, name='post-edit'),
         url(r'^(?P<post_id>\d+)/update/$', update, name='post-update'),
+        url(r'^(?P<post_id>\d+)/delete/$', delete, name='post-delete'),
         ]
