@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^about/us/$', about, name="about"),
     url(r'^policy/', include("wpsblog.urls.policy", namespace='policy')),
     url(r'^posts/', include("wpsblog.urls.posts", namespace='posts')),
-    url(r'^naver_posts_list/$', naver_posts_list, name='naver_posts_list')
+    url(r'^naver_posts_list/$', naver_posts_list, name='naver_posts_list'),
 ]
 
 if settings.DEBUG:

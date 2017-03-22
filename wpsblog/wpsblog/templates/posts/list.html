@@ -2,6 +2,8 @@
 
 {% block content %}
 <h1> Post List </h1>
+<h3><a href="{% url "posts:post-new" %}"> writing new post </a> </h3>
+
 <ul>
 	{% for post in posts %}
 	<a href="/posts/{{ post.id }}">

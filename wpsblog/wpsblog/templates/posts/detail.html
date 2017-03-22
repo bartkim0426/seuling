@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1> Post Detail </h1>
-
+<h3> <a href="{% url "posts:post-list" %}"> list로 돌아가기 </a></h3>
 <p>
 	<h2> {{ posts.title }} </h2>
 	<p> {{ posts.content }} </p>
