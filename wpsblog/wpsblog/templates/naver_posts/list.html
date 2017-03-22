@@ -7,6 +7,11 @@
 {% if keyword %}
 <b> {{ keyword }}로 크롤링 된 네이버 포스트입니다. </b>
 {% endif %}
+</br>
+{% if search %}
+<b> {{ search }}(이)가 내용에 포함된 네이버 포스트입니다. </b>
+{% endif %}
+
 <ul>
 {% for naver_post in naver_posts %}
 <p>
