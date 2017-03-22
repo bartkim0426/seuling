@@ -35,6 +35,7 @@ class Command(BaseCommand):
                thumbnail_image_element = ''
            
            Crawlnaver.objects.create(
+                   keyword = query,
                    title = title, 
                    original_url = url,
                    content = content,

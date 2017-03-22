@@ -35,7 +35,9 @@ class Naverpost(models.Model):
         return self.title
 
 class Crawlnaver(models.Model):
-    
+    keyword = models.CharField(
+            max_length=16
+            )
     title = models.CharField(
             max_length=256
     )

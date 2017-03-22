@@ -2,12 +2,18 @@
 
 {% block content %}
 <h1> Naver Posts_with An </h1>
+{{ naver_posts | length }}개의 네이버 검색 결과를 찾았습니다.
+</br>
+{% if keyword %}
+<b> {{ keyword }}로 크롤링 된 네이버 포스트입니다. </b>
+{% endif %}
 <ul>
 {% for naver_post in naver_posts %}
 <p>
 	<li>
 		<img src="{{ naver_post.thumbnail_image_element }}" alt="{{ naver_post.title }}"/>
 		<h3>{{ naver_post.title }}</h3>
+		<b> {{ naver_post.keyword }} </b>
 		<p> {{ naver_post.content }} </p>
 		<a href="{{ naver_post.original_url }}"> 원문 바로가기 </a>
 	</li></br>
