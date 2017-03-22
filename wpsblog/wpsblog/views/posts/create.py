@@ -1,6 +1,5 @@
 from django.shortcuts import redirect, render
 from wpsblog.models import Post
-from IPython import embed;
 
 
 def create(request):
