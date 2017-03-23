@@ -4,7 +4,7 @@
 {% block content %}
 <h2> Edit post  </h2>
 
-<form action="/posts/{{ post.id }}/update/" method="POST">
+<form action="{% url "posts:update" post_id=post.id %}" method="POST">
 
 	{% csrf_token %}
 	<input type="text", name="title" placeholder="제목" value="{{ post.title }}">

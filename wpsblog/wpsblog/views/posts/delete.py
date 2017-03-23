@@ -11,7 +11,7 @@ def delete(request, post_id):
 
     return redirect(
             reverse(
-                "posts:post-list",
+                "posts:list",
                 )
             )
     # redirect("/posts/")
