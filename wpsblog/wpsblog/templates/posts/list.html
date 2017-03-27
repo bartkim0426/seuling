@@ -5,12 +5,10 @@
 <h3><a href="{% url "posts:new" %}"> writing new post </a> </h3>
 
 <ul>
-	{% for post in posts %}
-	<a href="/posts/{{ post.id }}">
-		<h2> {{ post.title }} </h2>
-	</a>
-	<a href="{{ post.get_url }}"> {{ post.get_url }} </a>
-	<p> {{ post.content }} </p>
-	{% endfor %}
+{% for post in posts %}
+
+<li><a href={{ post.get_absolute_url }}><h2> {{ post.title }} </h2></a></li>
+	<li><a href="{{ post.get_url }}"> {{ post.get_url }} </a> <p> {{ post.content }} </p> </li>
+{% endfor %}
 </ul>
 {% endblock content %}

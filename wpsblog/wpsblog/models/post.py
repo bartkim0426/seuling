@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls.base import reverse
-from django.shortcuts import render
 
 
 class Post(models.Model):
@@ -8,7 +7,7 @@ class Post(models.Model):
         max_length=120,
     )
     content = models.TextField()
-
+    
     def __str__(self):
         return self.title
 
