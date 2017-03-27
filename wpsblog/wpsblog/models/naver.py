@@ -3,19 +3,6 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render
 
 
-class Post(models.Model):
-    title = models.CharField(
-        max_length=120,
-    )
-    content = models.TextField()
-
-    def get_absolute_url(self):
-        return reverse(
-                'posts:post-detail',
-            kwargs = { 'post_id': self.id },
-                )
-
-
 class Naverpost(models.Model):
     title = models.CharField(
         max_length=120,

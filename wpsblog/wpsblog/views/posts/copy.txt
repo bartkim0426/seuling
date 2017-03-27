@@ -1,4 +1,0 @@
-post_image = post.select_one('div a img').get('src')   
-post_title = post.select_one('dt a').get('title')
-post_content = post.select_one('dd.sh_blog_passage').get_text()
-post_url = post.select_one('dt a').get('href')
