@@ -1,0 +1,10 @@
+{% extends "posts/detail.html" %}
+
+{% block comment %}
+<h2> New Comment  </h2>
+<form action={% url "posts:create-comment" post_id=post.id %} method="POST">
+	{% csrf_token %}
+	<input type="text", name="content" placeholder="댓글">
+	<input type="submit", value="publish">
+</form>
+{% endblock %}
