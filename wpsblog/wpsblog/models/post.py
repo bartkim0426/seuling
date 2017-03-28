@@ -1,7 +1,8 @@
 from django.db import models
 from django.urls.base import reverse
 
-class PostManager(models.Model):
+
+class PostManager(models.Manager):
 
     def public(self):
         return self.filter(is_public=True)
