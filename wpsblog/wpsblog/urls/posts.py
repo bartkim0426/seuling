@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from wpsblog.views.posts import list, detail, naver, create, new, edit, update, delete, create_comment, new_comment
+from wpsblog.views.posts import list, detail, naver, create, new, edit, update, delete, create_comment, new_comment, edit_comment, update_comment, delete_comment
 
 
 urlpatterns = [
@@ -12,6 +12,10 @@ urlpatterns = [
         url(r'^(?P<post_id>\d+)/update/$', update, name='update'),
         url(r'^(?P<post_id>\d+)/delete/$', delete, name='delete'),
 
+        # comment
         url(r'^(?P<post_id>\d+)/new_comment/$', new_comment, name='new-comment'),
         url(r'^(?P<post_id>\d+)/create_comment/$', create_comment, name='create-comment'), 
+        url(r'^(?P<post_id>\d+)/edit_comment/(?P<comment_id>\d+)/$', edit_comment, name='edit-comment'),
+        url(r'^(?P<post_id>\d+)/update_comment/(?P<comment_id>\d+)/$', update_comment, name='update-comment'),
+        url(r'^(?P<post_id>\d+)/delete_comment/(?P<comment_id>\d+)/$', delete_comment, name='delete-comment'),
         ]

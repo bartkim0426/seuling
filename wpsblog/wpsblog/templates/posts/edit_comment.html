@@ -1,0 +1,10 @@
+{% extends "posts/detail.html" %}
+
+{% block comment %}
+<h2> Edit Comment  </h2>
+<form action={% url "posts:update-comment" post_id=post.id comment_id=comment.id %} method="POST">
+	{% csrf_token %}
+	<input type="text", name="content" placeholder="댓글" value="{{ comment.content }}">
+	<input type="submit", value="publish">
+</form>
+{% endblock %}
