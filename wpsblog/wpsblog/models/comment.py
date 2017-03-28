@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls.base import reverse
 
 
 class Comment(models.Model):
@@ -8,3 +9,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content
+
+    def get_absolute_url(self):
+        return reverse(
+                'posts:detail',
+            kwargs = { 'post_id': self.post.id },
+                ) + "#comment-" + str(self.id)

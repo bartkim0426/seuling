@@ -11,7 +11,7 @@
 <b> {{ post.comment_set.count }}개의 comment </b> </br>
 <ul>
 {% for comment in post.comment_set.all %}
-<li>{{ comment.content }}</li>
+<li id="comment-{{ comment.id }}">{{ comment.content }}</li>
 {% endfor %}
 </ul>
 </p>
