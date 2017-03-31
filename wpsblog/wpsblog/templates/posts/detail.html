@@ -11,9 +11,11 @@
 <b> {{ post.comment_set.count }}개의 comment </b> </br>
 <ul>
 {% for comment in post.comment_set.all %}
+{% if %} 
 <li id="comment-{{ comment.id }}">{{ comment.content }}</li>
 <a href="{% url "posts:edit-comment" post_id=post.id comment_id=comment.id %}"> 댓글 수정하기</a> /
 <a href="{% url "posts:delete-comment" post_id=post.id comment_id=comment.id %}"> 댓글 삭제하기</a>
+{% endif %}
 {% endfor %}
 </ul>
 </p>

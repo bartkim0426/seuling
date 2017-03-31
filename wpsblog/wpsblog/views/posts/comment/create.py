@@ -7,7 +7,7 @@ def create_comment(request, post_id):
 
     post = Post.objects.get(id=post_id)
 
-    post.comment_set.create(
+    comment = post.comment_set.create(
             content = content,
             )
 
