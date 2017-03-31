@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 
+
 {% block content %}
 <h2> New post  </h2>
 
-<form action={% url "posts:create" %} method="POST">
+<form action={% url "posts:create" %} method="POST" enctype="multipart/form-data">
 	{% csrf_token %}
 	<input type="text", name="title" placeholder="제목">
 	<input type="text", name="content" placeholder="내용">
+	<input type="file", name="image">
 	<input type="submit", value="publish">
 </form>
 {% endblock %}

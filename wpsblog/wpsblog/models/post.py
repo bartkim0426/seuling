@@ -32,3 +32,9 @@ class Post(models.Model):
                 'posts:detail',
             kwargs = { 'post_id': self.id },
                 )
+
+    def get_image_url(self):
+        if self.image:
+            return self.image.url
+        else:
+            return "http://placehold.it/300x200"
