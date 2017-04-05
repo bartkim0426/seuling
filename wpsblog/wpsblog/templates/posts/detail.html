@@ -12,6 +12,7 @@
 <ul>
 	{% for comment in post.comment_set.all %}
 	<li id="comment-{{ comment.id }}">
+	{{ comment.user.username }}-
 	{{ comment.content }}
 	<a href="{% url "posts:edit-comment" post_id=post.id comment_id=comment.id %}"> 댓글 수정하기</a> /
 	<a href="{% url "posts:delete-comment" post_id=post.id comment_id=comment.id %}"> 댓글 삭제하기</a>

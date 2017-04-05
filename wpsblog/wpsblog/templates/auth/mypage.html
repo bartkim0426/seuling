@@ -9,5 +9,13 @@
 	<li><a href="{% url "posts:detail" post_id=post.id %}"> {{ post.title }}</a></li>
 	{% endfor %}
 </ul>
+
+{{ request.user.username }}님이 쓰신 댓글 ({{ request.user.comment_set.count }})
+<ul>
+	{% for comment in request.user.comment_set.all %} 
+	<li><a href="{% url "posts:detail" post_id=comment.post_id %}#comment-{{ comment.id }}">{{ comment.content }} </a> </li>
+	{% endfor %}
+</ul>
+
 </p>
 {% endblock %}

@@ -2,11 +2,9 @@
 
 {% block content %}
 <h1> Post List </h1>
-<h3><a href="{% url "posts:new" %}"> writing new post </a> </h3>
 
 <ul>
 {% for post in posts %}
-
 	<li>
 		<img src="{{ post.get_image_url }}" alt="{{ post.title }}" />
 		<a href={{ post.get_absolute_url }}>
@@ -15,6 +13,22 @@
 		<i> {{ post.id }} </i> </br>
 		<p> {{ post.content }} </p>
 	</li>
-	{% endfor %}
+{% endfor %}
 </ul>
+
+<div class="pagination">
+	<span class="step-links">
+		{% if posts.has_previous %}
+		<a href="?page={{ posts.previous_page_number }}"> previous </a>
+		{% endif %}
+		<span class="current">
+			Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+		</span>
+		{% if posts.has_next %}
+		<a href="?page={{ posts.next_page_number }}"> next</a>
+		{% endif %}
+	</span>
+</div>
+
+<h3><a href="{% url "posts:new" %}"> writing new post </a> </h3>
 {% endblock content %}
