@@ -1,9 +1,0 @@
-<header>
-<h1> Header </h1>
-
-<ul>
-	<li><a href="{% url "home" %}"> HOME </a></li>
-	<li><a href="{% url "news"  %}"> NEWS PAGE </a></li>
-	<li><a href="{% url "about"  %}"> About Us </a></li>
-</ul>
-</header>
