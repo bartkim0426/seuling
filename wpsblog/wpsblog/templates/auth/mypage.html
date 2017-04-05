@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3> My Page </h3>
+<p>
+{{ request.user.username }}님이 쓰신 글 ({{ request.user.post_set.count }})
+<ul>
+	{% for post in request.user.post_set.all %}
+	<li><a href="{% url "posts:detail" post_id=post.id %}"> {{ post.title }}</a></li>
+	{% endfor %}
+</ul>
+</p>
+{% endblock %}

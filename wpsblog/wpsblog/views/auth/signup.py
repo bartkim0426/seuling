@@ -1,4 +1,4 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse 
 
@@ -10,12 +10,18 @@ def signup(request):
         email = request.POST.get("email")
 
         user = User.objects.create_user(
-                username = username,
-                password = password,
+                username=username,
+                password=password,
+                email=email,
                 )
 
-    return redirect(
-           reverse(
-               "auth:login" 
-              ) 
-            )
+        return redirect(
+               reverse(
+                   "auth:login" 
+                  ) 
+                )
+    return render(
+           request,
+           "auth/signup.html",
+           {},
+           )

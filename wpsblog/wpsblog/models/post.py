@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls.base import reverse
+from django.contrib.auth.models import User
 
 
 class PostManager(models.Manager):
@@ -9,6 +10,8 @@ class PostManager(models.Manager):
 
 
 class Post(models.Model):
+
+    user = models.ForeignKey(User)
 
     objects = PostManager()
 

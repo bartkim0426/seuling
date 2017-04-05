@@ -36,3 +36,6 @@ $pip install -r requirements/development.txt # 개발시에
 ```
 $django-admin startproject wpsblog
 ```
+
+### 4/1
+signup시302오류 발생 => 해결해야함

@@ -1,11 +1,19 @@
 <header>
 <h1> Header </h1>
-
+{{ request.user }}
 <ul>
 	<li><a href="{% url "home" %}"> HOME </a></li>
 	<li><a href="{% url "news"  %}"> NEWS PAGE </a></li>
 	<li><a href="{% url "about"  %}"> About Us </a></li>
-	<li><a href="{% url "auth:login" %}"> Login  </a></li>
-	<li><a href="{% url "auth:signup" %}"> Signup </a></li>
+	{% if request.user.is_authenticated %}
+		<p> {{ request.user.username }}으로 로그인 </p>
+		<li><a href="{% url "auth:logout" %}"> Logout </a></li>
+		<li><a href="{% url "auth:mypage" %}"> Mypage</a></li>
+	{% else %}
+		<li><a href="{% url "auth:login" %}"> Login  </a></li>
+		<li><a href="{% url "auth:signup" %}"> Signup </a></li>
+		<li><a href="{% url "auth:mypage" %}"> Mypage</a></li>
+	{% endif %}
+
 </ul>
 </header>
