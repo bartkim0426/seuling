@@ -1,4 +1,4 @@
-from .list import list
+from .list import PostListView 
 from .detail import detail
 from .naver import naver
 from .create import create

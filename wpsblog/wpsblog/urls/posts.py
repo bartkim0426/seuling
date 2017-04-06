@@ -1,9 +1,9 @@
 from django.conf.urls import url
-from wpsblog.views.posts import list, detail, naver, create, new, edit, update, delete, create_comment, new_comment, edit_comment, update_comment, delete_comment
+from wpsblog.views.posts import PostListView, detail, naver, create, new, edit, update, delete, create_comment, new_comment, edit_comment, update_comment, delete_comment
 
 
 urlpatterns = [
-        url(r'^$', list, name='list'),
+        url(r'^$', PostListView.as_view(), name='list'),
         url(r'^(?P<post_id>\d+)/$', detail, name='detail'),
         url(r'^naver/$', naver, name='naver'), 
         url(r'^create/$', create, name='create'), 
