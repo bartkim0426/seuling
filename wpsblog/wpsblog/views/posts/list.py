@@ -5,6 +5,7 @@ from wpsblog.models import Post, Comment
 
 
 class PostListView(ListView):
+
     model = Post
     template_name = "posts/list.html"
     context_object_name = "posts"

@@ -1,5 +1,5 @@
 from .list import PostListView 
-from .detail import detail
+from .detail import PostDetailView
 from .naver import naver
 from .create import create
 from .new import new 
