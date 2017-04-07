@@ -33,7 +33,7 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse(
                 'posts:detail',
-            kwargs = { 'post_id': self.id },
+            kwargs = { 'pk': self.id },
                 )
 
     def get_image_url(self):

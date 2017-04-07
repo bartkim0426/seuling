@@ -2,11 +2,11 @@ from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic.list import ListView
 from wpsblog.models import Post, Comment
+from .base import PostBaseView
 
 
-class PostListView(ListView):
+class PostListView(PostBaseView, ListView):
 
-    model = Post
     template_name = "posts/list.html"
     context_object_name = "posts"
 

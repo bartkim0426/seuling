@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView
+from .base import PostBaseView
 from wpsblog.models import Post
 
 
-class PostDetailView(DetailView):
+class PostDetailView(PostBaseView, DetailView):
     
     template_name = "posts/detail.html"
-    model = Post
 
 #     def get_object(self):
 #         object = get_object_or_404(Post, id=self.kwargs.get("post_id"))
