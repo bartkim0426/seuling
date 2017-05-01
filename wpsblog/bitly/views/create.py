@@ -4,6 +4,8 @@ from django.views.generic import View
 
 from bitly.models import Bitlink
 
+from hashids import Hashids
+
 
 class BitlinkCreateView(View):
 
@@ -21,8 +23,9 @@ class BitlinkCreateView(View):
         bitlink = request.user.bitlink_set.create(
             original_url=original_url,        
         )
-
-        # bitlink.id => bitlink.shorten_hash (hash.id)
+        
+        hashids = Hashids(salt="bitlink", min_length=4)
+        bitlink.shorten_hash = hashids.encode(bitlink.id)
         bitlink.save()
 
         return redirect(reverse('home'))
