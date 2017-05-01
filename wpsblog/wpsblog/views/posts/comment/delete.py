@@ -3,9 +3,9 @@ from django.core.urlresolvers import reverse
 from wpsblog.models import Post
 
 
-def delete_comment(request, post_id, comment_id):
+def delete_comment(request, pk, comment_id):
 
-    post = Post.objects.get(id=post_id)
+    post = Post.objects.get(id=pk)
     
     comment = post.comment_set.get(id=comment_id)
 

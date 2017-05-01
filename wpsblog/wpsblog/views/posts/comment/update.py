@@ -2,10 +2,10 @@ from django.shortcuts import redirect, render
 from wpsblog.models import Post
 
 
-def update_comment(request, post_id, comment_id):
+def update_comment(request, pk, comment_id):
     content = request.POST.get("content")
 
-    post = Post.objects.get(id=post_id)
+    post = Post.objects.get(id=pk)
     comment = post.comment_set.get(id=comment_id)
 
     comment.content = content

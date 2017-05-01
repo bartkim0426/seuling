@@ -2,8 +2,8 @@ from django.shortcuts import render
 from wpsblog.models import Post
 
 
-def edit(request, post_id):
-    post = Post.objects.get(id=post_id)
+def edit(request, pk):
+    post = Post.objects.get(id=pk)
 
     return render(
            request,

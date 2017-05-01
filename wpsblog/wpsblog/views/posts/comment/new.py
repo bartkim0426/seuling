@@ -4,8 +4,8 @@ from wpsblog.models import Post
 
 
 @login_required
-def new_comment(request, post_id):
-    post = Post.objects.get(id=post_id)
+def new_comment(request, pk):
+    post = Post.objects.get(id=pk)
 
     return render(
            request,
