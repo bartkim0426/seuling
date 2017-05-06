@@ -2,6 +2,15 @@ from django.test import TestCase
 from django.core.urlresolvers import reverse
 
 
+class BitlinkViewTestCase(TestCase):
+
+    def setUp(self):
+        self.response = self.client.get(reverse("bitly"))
+
+    def test_bitly_should_make_shorten_hash(self):
+        self.assert
+
+
 class HomeViewTestCase(TestCase):
 
     def setUp(self):
