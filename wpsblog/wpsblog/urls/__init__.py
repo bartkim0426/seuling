@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^rooms/(?P<room_id>\d+)/$', room, name="room"),
     url(r'^news/$', news, name="news"),
     url(r'^about/us/$', about, name="about"),
+    url(r'^pricing/$', PricingView.as_view(), name="pricing"),
     url(r'^naver_posts_list/$', naver_posts_list, name='naver_posts_list'),
     # policy
     url(r'^policy/', include("wpsblog.urls.policy", namespace='policy')),
