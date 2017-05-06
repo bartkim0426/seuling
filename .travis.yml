@@ -8,3 +8,6 @@ install:
 
 script:
   - make test
+
+notifications:
+    slack: suwonseul:2YVktuf7JJ8ktHTEcUHwOYpB
