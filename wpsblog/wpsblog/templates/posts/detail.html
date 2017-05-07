@@ -14,17 +14,17 @@
 	<li id="comment-{{ comment.id }}">
 	{{ comment.user.username }}-
 	{{ comment.content }}
-	<a href="{% url "posts:edit-comment" post_id=post.id comment_id=comment.id %}"> 댓글 수정하기</a> /
-	<a href="{% url "posts:delete-comment" post_id=post.id comment_id=comment.id %}"> 댓글 삭제하기</a>
+	<a href="{% url "posts:edit-comment" pk=post.id comment_id=comment.id %}"> 댓글 수정하기</a> /
+	<a href="{% url "posts:delete-comment" pk=post.id comment_id=comment.id %}"> 댓글 삭제하기</a>
 	</li>
 	{% endfor %}
 </ul>
 </p>
 
-<a href="{% url "posts:new-comment" post_id=post.id %}"> 댓글 달기 </a>/
+<a href="{% url "posts:new-comment" pk=post.id %}"> 댓글 달기 </a>/
 <a href="{% url "posts:list" %}"> list로 돌아가기 </a>/ 
-<a href="{% url "posts:edit" post_id=post.id %}"> 수정하기 </a>/
-<a href="{% url "posts:delete" post_id=post.id %}"> 삭제하기 </a>
+<a href="{% url "posts:edit" pk=post.id %}"> 수정하기 </a>/
+<a href="{% url "posts:delete" pk=post.id %}"> 삭제하기 </a>
 
 {% block comment %}
 {% endblock %}

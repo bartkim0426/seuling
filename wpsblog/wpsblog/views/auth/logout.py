@@ -1,13 +1,25 @@
-from django.contrib.auth import logout as auth_logout
+from django.contrib.auth import logout
 from django.shortcuts import render
+from django.views.generic import View
 
 
-def logout(request):
+class LogoutView(View):
 
-    auth_logout(request)
+    def get(self, request, *args, **kwargs):
 
-    return render(
-            request,
-            "posts/list.html",
-            {},
-            )
+        logout(request)
+
+        return render(
+                request,
+                "posts/list.html",
+                {},
+                )
+# def logout(request):
+# 
+#     auth_logout(request)
+# 
+#     return render(
+#             request,
+#             "posts/list.html",
+#             {},
+#             )

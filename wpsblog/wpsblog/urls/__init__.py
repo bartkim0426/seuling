@@ -7,10 +7,11 @@ from wpsblog.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', home, name="home"),
+    url(r'^$', HomeView.as_view(), name="home"),
     url(r'^rooms/(?P<room_id>\d+)/$', room, name="room"),
     url(r'^news/$', news, name="news"),
     url(r'^about/us/$', about, name="about"),
+    url(r'^pricing/$', PricingView.as_view(), name="pricing"),
     url(r'^naver_posts_list/$', naver_posts_list, name='naver_posts_list'),
     # policy
     url(r'^policy/', include("wpsblog.urls.policy", namespace='policy')),
@@ -18,6 +19,7 @@ urlpatterns = [
     url(r'^posts/', include("wpsblog.urls.posts", namespace='posts')),
     # auth
     url(r'^auth/', include("wpsblog.urls.auth", namespace='auth')),
+    url(r'^bitly/', include("wpsblog.urls.bitly", namespace='bitly')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

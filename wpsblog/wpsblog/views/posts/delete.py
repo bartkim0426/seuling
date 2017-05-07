@@ -3,8 +3,8 @@ from django.core.urlresolvers import reverse
 from wpsblog.models import Post
 
 
-def delete(request, post_id):
-    post = Post.objects.get(id=post_id)
+def delete(request, pk):
+    post = Post.objects.get(id=pk)
     post.delete()
 
     return redirect(

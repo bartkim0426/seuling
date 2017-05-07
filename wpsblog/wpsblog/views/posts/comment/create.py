@@ -1,24 +1,43 @@
+from django.views.generic import View
+from django.views.generic.edit import CreateView
+
 from django.shortcuts import redirect, render
-from wpsblog.models import Post
+
+from wpsblog.models import Comment, Post
 
 
-def create_comment(request, post_id):
+class CommentBaseView(View):
+    model = Comment
 
-    user = request.user
 
-    content = request.POST.get("content")
+class CommentCreateView(CommentBaseView, CreateView):
+    fields = [
+        'content',        
+    ]
 
-    post = Post.objects.get(id=post_id)
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.post = Post.objects.get(id=self.kwargs.get('pk'))
 
-    comment = post.comment_set.create(
-            content = content,
-            user = user
-            )
+        return super(CommentCreateView, self).form_valid(form)
 
-    # user 관점
-#     comment = user.comment_set.create(
-#             post=post,
-#             content=content,
+# def create_comment(request, pk):
+# 
+#     user = request.user
+# 
+#     content = request.POST.get("content")
+# 
+#     post = Post.objects.get(id=pk)
+# 
+#     comment = post.comment_set.create(
+#             content = content,
+#             user = user
 #             )
-
-    return redirect(comment)
+# 
+#     # user 관점
+# #     comment = user.comment_set.create(
+# #             post=post,
+# #             content=content,
+# #             )
+# 
+#     return redirect(comment)

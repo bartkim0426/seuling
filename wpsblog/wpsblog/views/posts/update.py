@@ -2,11 +2,11 @@ from django.shortcuts import redirect, render
 from wpsblog.models import Post
 
 
-def update(request, post_id):
+def update(request, pk):
     title = request.POST.get("title")
     content = request.POST.get('content')
     
-    post = Post.objects.get(id=post_id)
+    post = Post.objects.get(id=pk)
     
     post.title = title
     post.content = content

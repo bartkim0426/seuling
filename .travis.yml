@@ -1,0 +1,10 @@
+language: python
+python:
+  - "3.6"
+
+install: pip install -r requirements/development.txt
+
+script: make test
+
+notifications:
+    slack: suwonseul:2YVktuf7JJ8ktHTEcUHwOYpB
